@@ -6,7 +6,8 @@ from validationService.conf import AUTH_URL
 from validationService import util
 
 
-def validate_get():  # noqa: E501
+def validate_get(Authorization=None):  # noqa: E501
+
     """validate_get
 
      # noqa: E501
@@ -23,25 +24,33 @@ def validate_get():  # noqa: E501
     }
 
     try:
-        response = requests.get(AUTH_URL,headers=headers,verify = false)
+        #response = requests.get(AUTH_URL,headers=headers,verify = false)
+        response = request.get(AUTH_URL,headers=headers,verify = false)
 
-        if(response=='dSgdSFDHGSdHJ'):
+
+
+        # if response.status_code == 200:
+        #     return 'success'
+        # else :
+        #     return 'failure'
+
+
+        if(response==token):
 
             return "success"
+        else :
+            response = {
+                     "error": "Exception occured while calling the uRL"
+                            }
+            return response
     except Exception as error:
         response ={
-            error: "Exception occured while calling the uRL"
+            "error": "Exception occured while calling the uRL"
         }
 
         return response
 
 
-        if isInstance(response, ErrorObject):
-            return 500
-        elif response.status_code == 401:
-            return response
-        elif response.status_code != 200:
-            return 500
 
 
     
