@@ -1,0 +1,26 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Verifies Keycloak and JWT token"
+host: "localhost"
+basePath: "/"
+schemes:
+- "https"
+paths:
+  /validate:
+    get:
+      operationId: "validate_get"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        description: "an authorization header token"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response, JWT token matched with Keycloak Token."
+        401:
+          description: "Token is not valid"
+      x-swagger-router-controller: "validationService.controllers.default_controller"
+definitions: {}
