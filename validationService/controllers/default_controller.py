@@ -1,5 +1,7 @@
 import connexion
 import six
+import json
+import flask
 from flask import request
 import requests
 from validationService.conf import AUTH_URL
@@ -29,26 +31,37 @@ def validate_get(Authorization=None):  # noqa: E501
 
 
 
-        # if response.status_code == 200:
-        #     return 'success'
-        # else :
-        #     return 'failure'
-
-
-        if(response==token):
-
-            return "success"
-        else :
-            response = {
-                     "error": "Exception occured while calling the uRL"
-                            }
+        if response.status_code == 200:
+            response = flask.make_response()
+            response.status_code = 200
+            response.mimetype = 'application/json'
+            response.data = json.dumps({"Message" "Verified and authorised"})
             return response
+
+        elif(response.status_code==401):
+            response = flask.make_response()
+            response.status_code=401
+            response.mimetype= 'application/json'
+            response.data = json.dumps({"Message" "Unauthorised"})
+            return response
+
+        elif(response.status_code!=200):
+            response = flask.make_response()
+            response.status_code = 500
+            response.mimetype = 'application/json'
+            response.data = json.dumps({"Authorisation failure"})
+
+
+
     except Exception as error:
         response ={
             "error": "Exception occured while calling the uRL"
         }
 
         return response
+        
+        
+        
 
 
 
