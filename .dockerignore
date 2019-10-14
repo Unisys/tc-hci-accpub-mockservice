@@ -2,7 +2,6 @@
 .swagger-codegen-ignore
 README.md
 git_push.sh
-setup.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
