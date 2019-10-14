@@ -1,0 +1,28 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ${APP_NAME}
+spec:
+  selector:
+    app: ${APP_NAME}
+  ports:
+  - protocol: "TCP"
+    port: 8080
+  type: ClusterIP
+
+---
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: ${APP_NAME}
+  annotations:
+    kubernetes.io/ingress.class: ${ENV}
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+  - http:
+      paths:
+      - backend: 
+          serviceName: ${APP_NAME}
+          servicePort: 8080
+        path: /api/mock(/|$)(.*)
