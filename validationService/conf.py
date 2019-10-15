@@ -1,1 +1,1 @@
-AUTH_URL = 'http://a905457a5ed8a11e9bee502f39c6ca2d-340880631.us-west-2.elb.amazonaws.com/auth/realms/THATC-SMS/protocol/openid-connect/userinfo'
+AUTH_URL = 'http://a905457a5ed8a11e9bee502f39c6ca2d-340880631.us-west-2.elb.amazonaws.com/auth/realms/THATC-OTP/protocol/openid-connect/userinfo'

@@ -25,14 +25,10 @@ def validate_get(Authorization=None):  # noqa: E501
         'Authorization': token
     }
 
-    print(headers)
-
-    print("before request")
 
     # response = requests.get(AUTH_URL,headers=headers,verify = false)
     response = requests.get(AUTH_URL, headers=headers, verify=False)
-    print("AUTH_URL", AUTH_URL)
-    print("response", response)
+
 
     if response.status_code == 200:
         response = flask.make_response()
