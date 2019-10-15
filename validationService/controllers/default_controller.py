@@ -20,51 +20,47 @@ def validate_get(Authorization=None):  # noqa: E501
     :rtype: None
     """
     token = request.headers.get('Authorization')
-
+    print(token)
     headers = {
-            'Authorization': token
+        'Authorization': token
     }
 
-    try:
-        #response = requests.get(AUTH_URL,headers=headers,verify = false)
-        response = request.get(AUTH_URL,headers=headers,verify = false)
+    print(headers)
 
+    print("before request")
 
+    # response = requests.get(AUTH_URL,headers=headers,verify = false)
+    response = requests.get(AUTH_URL, headers=headers, verify=False)
+    print("AUTH_URL", AUTH_URL)
+    print("response", response)
 
-        if response.status_code == 200:
-            response = flask.make_response()
-            response.status_code = 200
-            response.mimetype = 'application/json'
-            response.data = json.dumps({"Message" "Verified and authorised"})
-            return response
-
-        elif(response.status_code==401):
-            response = flask.make_response()
-            response.status_code=401
-            response.mimetype= 'application/json'
-            response.data = json.dumps({"Message" "Unauthorised"})
-            return response
-
-        elif(response.status_code!=200):
-            response = flask.make_response()
-            response.status_code = 500
-            response.mimetype = 'application/json'
-            response.data = json.dumps({"Authorisation failure"})
-
-
-
-    except Exception as error:
-        response ={
-            "error": "Exception occured while calling the uRL"
-        }
-
+    if response.status_code == 200:
+        response = flask.make_response()
+        response.status_code = 200
+        response.type = 'application/json'
+        response.data = json.dumps({"Message": "Verified and authorised"})
         return response
-        
-        
-        
+
+    elif (response.status_code == 401):
+        response = flask.make_response()
+        response.status_code = 401
+        response.type = 'application/json'
+        response.data = json.dumps({"Message": "Unauthorised"})
+        return response
+
+    elif (response.status_code != 200):
+        response = flask.make_response()
+        response.status_code = 500
+        response.type = 'application/json'
+        response.data = json.dumps({"Authorisation failure"})
+        return response
 
 
 
 
-    
+
+
+
+
+
 
