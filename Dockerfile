@@ -1,5 +1,5 @@
 # FROM python:3-alpine
-ARG python=python:3.7.4-slim-buster
+ARG python=python:3.7.4-buster
 
 FROM $python AS deploy
 

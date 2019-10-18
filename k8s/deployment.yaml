@@ -12,3 +12,10 @@ spec:
       containers:
       - name: ${APP_NAME}
         image: ${ECR_IMAGE}
+        livenessProbe:
+          exec:
+            command:
+            - bash
+            - ./liveness.sh
+          initialDelaySeconds: 10
+          periodSeconds: 10
